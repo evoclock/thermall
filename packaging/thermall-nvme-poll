@@ -1,0 +1,14 @@
+#!/usr/bin/env python3
+"""Purpose: poll NVMe SMART data and write /run/thermall/nvme.json.
+
+Inputs: visible /dev/nvme*n1 devices and `nvme smart-log` output.
+Outputs: atomically written JSON at /run/thermall/nvme.json, mode 0644.
+"""
+
+from __future__ import annotations
+
+from thermall.nvme_helper_install import main
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

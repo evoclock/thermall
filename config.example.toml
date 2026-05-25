@@ -1,0 +1,59 @@
+# thermall example configuration.
+#
+# Copy to ~/.config/thermall/config.toml and edit for your hardware.
+#
+# Step-by-step for identifying your labels:
+#   1. Run `sensors -j` to dump raw kernel sensor names.
+#   2. Cross-reference with your motherboard BIOS hardware-monitor labels.
+#   3. Add or replace entries in the [labels] section below.
+#
+# Thresholds are in degrees Celsius. The `warn` value is yellow in the UI;
+# the `crit` value is red. Below `warn` the sensor reads green.
+
+[general]
+refresh_seconds = 2
+theme = "default"
+
+[labels]
+# AMD k10temp (Ryzen)
+"k10temp Tctl" = "CPU package"
+"k10temp Tccd1" = "CPU CCD1"
+"k10temp Tccd2" = "CPU CCD2"
+
+# Nuvoton NCT6798 (ASUS B550 / X570 / other AM4 boards)
+"AUXTIN0" = "VRM (CPU)"
+"AUXTIN1" = "PCH"
+"AUXTIN2" = "VRM (SoC)"
+"AUXTIN3" = "M.2 area"
+"SYSTIN" = "Chassis"
+"CPUTIN" = "CPU socket (board)"
+
+# Fan headers (board-specific; rename for your layout)
+"fan1" = "CPU"
+"fan2" = "AIO pump"
+"fan3" = "Chassis front"
+"fan4" = "Chassis rear"
+"fan5" = "Chassis top"
+"fan6" = "NVMe heatsink"
+
+[thresholds.cpu]
+warn = 80
+crit = 90
+
+[thresholds.vrm]
+warn = 90
+crit = 100
+
+[thresholds.gpu]
+warn = 75
+crit = 85
+
+[thresholds.nvme]
+warn = 60
+crit = 75
+
+[tmux]
+layout = "3-pane"
+btop_pane = "left"
+nvtop_pane = "top-right"
+thermall_pane = "bottom-right"

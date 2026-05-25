@@ -1,0 +1,82 @@
+name: Release
+
+# Trigger on tag push matching v*.*.*.
+# A typical release flow:
+#   1. Bump the version in `pyproject.toml` + `src/thermall/__init__.py`.
+#   2. Commit + push.
+#   3. `git tag vX.Y.Z && git push origin vX.Y.Z`.
+#   4. This workflow builds the wheel + sdist and publishes to PyPI.
+#
+# PyPI publishing uses Trusted Publishing (OIDC); no API token needed
+# once the project is configured on PyPI (Account -> Publishing ->
+# Add pending publisher). The workflow's `id-token: write` permission
+# is what makes OIDC work.
+#
+# No untrusted inputs flow into any `run:` command in this workflow:
+# the verification step uses hardcoded size values, and publishing
+# uses the official PyPA action which handles inputs safely.
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build wheel + sdist
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
+        with:
+          enable-cache: true
+
+      - name: Set up Python
+        run: uv python install 3.11
+
+      - name: Build distributions
+        run: uv build
+
+      - name: Verify wheel includes bundled icons
+        run: |
+          set -euo pipefail
+          wheel=$(ls dist/*.whl)
+          for size in 16 24 32 48 64 128 256 512; do
+            unzip -l "$wheel" | grep -q "thermall/icons/${size}x${size}/thermall.png" \
+              || (echo "Missing ${size}x${size} icon in wheel" && exit 1)
+          done
+          # SVG ships in the package as source mark (used by the README,
+          # not installed to hicolor). Verify it's bundled too.
+          unzip -l "$wheel" | grep -q "thermall/icons/thermall.svg" \
+            || (echo "Missing source SVG in wheel" && exit 1)
+          echo "[OK] wheel contains all PNG sizes + source SVG"
+
+      - name: Upload built distributions
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+  publish:
+    name: Publish to PyPI
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+    environment:
+      name: pypi
+      url: https://pypi.org/project/thermall/
+    steps:
+      - name: Download built distributions
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+      - name: Publish to PyPI via Trusted Publishing
+        uses: pypa/gh-action-pypi-publish@release/v1

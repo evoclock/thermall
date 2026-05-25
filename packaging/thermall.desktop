@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=thermall
+GenericName=Cooling Dashboard
+Comment=Terminal UI for cooling-system observability (fans, temps, GPUs, NVMe)
+Exec=thermall
+Icon=thermall
+Terminal=true
+Categories=System;Monitor;HardwareSettings;Utility;
+Keywords=temperature;fan;cooling;monitor;hardware;sensors;nct6775;nvidia-smi;
+StartupNotify=false

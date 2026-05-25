@@ -1,0 +1,43 @@
+[Unit]
+Description=thermall NVMe SMART polling helper
+After=local-fs.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/libexec/thermall-nvme-poll
+
+# Sandbox: drop everything we do not need
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+PrivateNetwork=yes
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectKernelLogs=yes
+ProtectControlGroups=yes
+RestrictNamespaces=yes
+RestrictRealtime=yes
+RestrictSUIDSGID=yes
+LockPersonality=yes
+MemoryDenyWriteExecute=yes
+
+# Capabilities: only CAP_SYS_ADMIN (needed for nvme admin queue)
+CapabilityBoundingSet=CAP_SYS_ADMIN
+AmbientCapabilities=CAP_SYS_ADMIN
+
+# Device access: NVMe block devices only
+DevicePolicy=closed
+DeviceAllow=block-blkext rw
+DeviceAllow=char-nvme rw
+
+# Where it can write
+RuntimeDirectory=thermall
+RuntimeDirectoryMode=0755
+
+# System call filter
+SystemCallFilter=@system-service @file-system
+SystemCallFilter=~@privileged @resources
+
+[Install]
+WantedBy=multi-user.target
