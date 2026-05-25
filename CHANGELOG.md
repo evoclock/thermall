@@ -36,8 +36,9 @@ First public release candidate. Functionally complete v1 surface.
   `CAP_SYS_ADMIN` to the `nvme` binary itself.
 - **CI** (GitHub Actions): ruff lint + format + mypy + pytest with
   >=80% coverage on Python 3.11 and 3.12.
-- **Release workflow**: tag-triggered (`v*.*.*`) PyPI publish via
-  Trusted Publishing (OIDC; no API token in repo secrets).
+- **Release workflow**: tag-triggered (`v*.*.*`) build sanity check;
+  wheel + sdist uploaded as workflow artifacts. Distribution is via
+  GitHub install, not PyPI.
 
 ### Architecture decisions
 - 5 panels, no animation in the dashboard body (running a 24/7
