@@ -4,6 +4,12 @@
   <img src="docs/fan_and_thermometer-removebg.png" alt="thermall fan + thermometer" width="320">
 </p>
 
+<p align="center">
+  <a href="https://github.com/evoclock/thermall/actions/workflows/ci.yml"><img src="https://github.com/evoclock/thermall/actions/workflows/ci.yml/badge.svg" alt="CI"/></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-brightgreen?style=flat" alt="License"/></a>
+  <img src="https://img.shields.io/badge/python-3.11%2B-3776AB?style=flat&logo=python&logoColor=white" alt="Python 3.11+"/>
+</p>
+
 Terminal UI dashboard for cooling-system observability on Linux. Answers the
 question "is my cooling working as expected right now?" by showing fan RPMs,
 motherboard sensors, CPU / GPU / NVMe temperatures, and threshold-graded
