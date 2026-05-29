@@ -2,6 +2,45 @@
 
 All notable changes to thermall live here.
 
+## 0.1.2 (2026-05-29)
+
+### Changed
+
+- **Licence changed from MIT to GNU Affero General Public License v3
+  (AGPLv3) plus a Section 7(b) author-attribution clause.** AGPLv3 is
+  OSI-approved and delivers a structural source-disclosure obligation
+  for any conveyance or network-exposed deployment; the §7(b)
+  additional term preserves author attribution explicitly. Both
+  obligations are waived under a commercial licence, available for
+  for-profit entities and any use in a paid product or service. Same
+  pattern landed across the evoclock product line during the licence
+  consolidation pass; see README for the plain-English version.
+- `pyproject.toml`: licence field updated to `{ file = "LICENSE" }`;
+  PyPI classifier added (`License :: OSI Approved :: GNU Affero
+  General Public License v3 or later (AGPLv3+)`); project URLs
+  corrected from `jgamboa/thermall` to `evoclock/thermall`.
+- `LICENSE` now contains: a project preamble identifying the work and
+  pointing at the §7(b) additional terms, the verbatim FSF AGPLv3
+  text, the Section 7(b) additional terms requiring author
+  attribution preservation in source headers and user-facing primary
+  documentation, and a Commercial Licence Option notice pointing to
+  a forthcoming `COMMERCIAL.md`.
+- SPDX headers across 63 source / test / doc / script files updated
+  from `MIT` to `AGPL-3.0-or-later`.
+- README licence section rewritten with plain-English guidance
+  distinguishing open-source adoption from commercial adoption; CI,
+  licence, and Python-version badges added at the top.
+- README installation instructions updated to use `sfw uv tool
+  install` instead of `pipx install`, consistent with the project's
+  package-install discipline.
+- README acknowledgements section updated to drop named model
+  identifiers; Claude Code and Hermes are now described as
+  "spec-driven agents executing implementation tasks under that
+  direction" rather than as "planning collaborators".
+- `docs/design_rationale.md`: two internal phrasings revised
+  (cosmetic, no behavioural impact); supply-chain paragraph updated
+  to reflect the `sfw uv tool install` flow.
+
 ## 0.1.1 (2026-05-24)
 
 First public release candidate. Functionally complete v1 surface.
@@ -54,7 +93,7 @@ First public release candidate. Functionally complete v1 surface.
 
 ### Install
 ```bash
-pipx install --python python3.11 git+https://github.com/evoclock/thermall.git
+sfw uv tool install --python python3.11 "thermall @ git+https://github.com/evoclock/thermall.git"
 thermall install-launcher
 ```
 

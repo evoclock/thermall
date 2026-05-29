@@ -21,7 +21,7 @@ for a different goal — installable, polished, secure, multi-host
 portable. The complexity is the gap between those two goals.
 
 The rest of this document walks through which parts of that
-complexity are load-bearing and which are honestly over-engineered.
+complexity are central and which are honestly over-engineered.
 
 ## What the bash equivalent cannot reach without becoming thermall
 
@@ -132,7 +132,7 @@ is what produces the abstraction overhead.
 
 ## What the project deliberately does NOT do
 
-The "out of scope" decisions are as load-bearing as the
+The "out of scope" decisions are as central as the
 inclusions:
 
 - **No tmux composition mode in v1.** A previous iteration
@@ -176,12 +176,13 @@ The two privileged pieces (if installed) are:
    thermall only reads `smartd`'s journal output via
    `journalctl`.
 
-The supply-chain story: thermall is `pipx`-installable like any
-other Python tool. Compromise of the thermall package via the
-PyPI surface (a future risk; not currently published) would give
-the attacker your unprivileged user-space access — the same
-access any other pip-installed tool has — but **could not**
-invoke `nvme format`, flash firmware, or read raw drive blocks.
+The supply-chain story: thermall is installed via `sfw uv tool
+install` (Socket Firewall plus uv) like any other Python tool in
+the project's discipline. Compromise of the thermall package via
+the PyPI surface (a future risk; not currently published) would
+give the attacker your unprivileged user-space access — the same
+access any other user-space tool has — but **could not** invoke
+`nvme format`, flash firmware, or read raw drive blocks.
 The helper service is the privilege boundary, and the helper
 script does not take user input.
 

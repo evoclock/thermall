@@ -1,5 +1,5 @@
 # SPDX-FileCopyrightText: 2026 Julen Gamboa <j.a.r.gamboa@gmail.com>
-# SPDX-License-Identifier: MIT
+# SPDX-License-Identifier: AGPL-3.0-or-later
 
 """Help overlay modal for thermall.
 
@@ -141,7 +141,7 @@ class HelpScreen(ModalScreen[None]):
                 yield Static("More", classes="help-section")
                 yield Static(
                     "  Full docs live in the README "
-                    "([link]github.com/jgamboa/thermall[/link]). "
+                    "([link]github.com/evoclock/thermall[/link]). "
                     "Config + state files: ~/.config/thermall/.",
                     classes="help-row",
                 )

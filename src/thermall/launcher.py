@@ -1,5 +1,5 @@
 # SPDX-FileCopyrightText: 2026 Julen Gamboa <j.a.r.gamboa@gmail.com>
-# SPDX-License-Identifier: MIT
+# SPDX-License-Identifier: AGPL-3.0-or-later
 
 """Installer for desktop integration (launcher, icon)."""
 
@@ -83,8 +83,8 @@ def _get_package_path() -> Path:
 
     The icon assets ship inside `src/thermall/icons/` so they are
     included in wheel builds (the `packaging/` directory at the repo
-    root is development-only and NOT shipped when installed via
-    pipx / pip).
+    root is development-only and not shipped when installed via
+    uv tool, pipx, or pip).
     """
 
     return Path(__file__).resolve().parent

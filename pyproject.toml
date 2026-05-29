@@ -1,9 +1,9 @@
 [project]
 name = "thermall"
-version = "0.1.1"
+version = "0.1.2"
 description = "Terminal UI dashboard for cooling-system observability on Linux: fans, motherboard sensors, CPU/GPU/NVMe temperatures, threshold-graded warnings."
 readme = "README.md"
-license = { text = "MIT" }
+license = { file = "LICENSE" }
 authors = [
     { name = "Julen Gamboa", email = "j.a.r.gamboa@gmail.com" },
 ]
@@ -12,6 +12,7 @@ classifiers = [
     "Development Status :: 3 - Alpha",
     "Environment :: Console :: Curses",
     "Intended Audience :: System Administrators",
+    "License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)",
     "Operating System :: POSIX :: Linux",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.11",
@@ -26,9 +27,9 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/jgamboa/thermall"
-Repository = "https://github.com/jgamboa/thermall"
-Issues = "https://github.com/jgamboa/thermall/issues"
+Homepage = "https://github.com/evoclock/thermall"
+Repository = "https://github.com/evoclock/thermall"
+Issues = "https://github.com/evoclock/thermall/issues"
 
 [project.scripts]
 thermall = "thermall.cli:main"

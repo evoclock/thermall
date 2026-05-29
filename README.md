@@ -6,7 +6,7 @@
 
 <p align="center">
   <a href="https://github.com/evoclock/thermall/actions/workflows/ci.yml"><img src="https://github.com/evoclock/thermall/actions/workflows/ci.yml/badge.svg" alt="CI"/></a>
-  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-brightgreen?style=flat" alt="License"/></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-AGPLv3%20%2B%20Attribution-blue?style=flat" alt="License"/></a>
   <img src="https://img.shields.io/badge/python-3.11%2B-3776AB?style=flat&logo=python&logoColor=white" alt="Python 3.11+"/>
 </p>
 
@@ -48,10 +48,14 @@ I/O) are immediately visible.
 Requires Python 3.11 or newer.
 
 ```bash
-pipx install git+https://github.com/evoclock/thermall.git
+sfw uv tool install "thermall @ git+https://github.com/evoclock/thermall.git"
 ```
 
-Upgrade: `pipx upgrade thermall`. Uninstall: `pipx uninstall thermall`.
+The `sfw` prefix routes the install through Socket Firewall's threat-
+intel scan before any tarball lands on disk. Recommended for every
+package install regardless of source.
+
+Upgrade: `sfw uv tool upgrade thermall`. Uninstall: `uv tool uninstall thermall`.
 
 A PyPI release is planned once the v1 surface is stable.
 
@@ -74,9 +78,9 @@ opens thermall in a terminal. Remove with
 
 ## Prerequisites
 
-thermall installs cleanly via `pipx` and works with a useful default set
-of panels as soon as `lm-sensors` and (if present) `nvidia-smi` are on
-your system. The drive-health panel lights up when `smartmontools` is
+thermall installs cleanly via `uv tool install` and works with a useful
+default set of panels as soon as `lm-sensors` and (if present)
+`nvidia-smi` are on your system. The drive-health panel lights up when `smartmontools` is
 installed and `smartd` is running. Nothing else is required.
 
 ### Required
@@ -293,14 +297,44 @@ uv run mypy src/
 
 ## Acknowledgements
 
-Built by Julen Gamboa with some agent-assisted spec-driven
-development. Claude Code drove orchestration, design discussion, and
-most of the implementation work; Hermes (using GPT-5.5 and Minimax
-M2.5) handled additional review and asset generation. The agent
-loop is held accountable to written design constraints in
+Designed and built by Julen Gamboa, who drove system design,
+implementation, agent orchestration, and code review. Claude Code
+and Hermes operated as spec-driven agents, executing implementation
+tasks under that direction.
+
+The agent loop is held accountable to written design constraints in
 `docs/design_rationale.md` rather than the other way around; every
 implementation choice ties back to a written decision.
 
-## License
+## Licence
 
-MIT. See [LICENSE](LICENSE).
+**GNU Affero General Public License v3 (AGPLv3)** plus a Section 7(b)
+author-attribution clause. See [`LICENSE`](LICENSE) for the full text.
+
+The plain-English version:
+
+- **If you are using thermall in an open-source project**: you are
+  asked to credit Julen Gamboa as the original author in your README
+  or equivalent primary documentation, with a link back to this
+  repository. It is a courtesy ask; the project will not chase you to
+  the ends of the earth to enforce it. The AGPL terms still apply
+  (source disclosure on conveyance and network use), and that is the
+  part with real teeth. We support genuine open-source use without
+  friction.
+- **If you are a for-profit entity or you are using thermall in a
+  paid product or service**: you need a commercial licence. AGPLv3's
+  source-disclosure obligation on conveyance, and Section 13's
+  network-use clause if anyone wraps thermall in a remote-access
+  service, may not match how you want to ship. The commercial
+  licence waives those obligations. Contact the author for details;
+  pricing is flexible and case-by-case rather than triggered by a
+  revenue threshold.
+- **The split exists** because we have a problem with the pattern of
+  enterprises that exploit open-source projects without contributing
+  back, not with open-source contributors themselves. AGPLv3 plus a
+  commercial offering is the standard, OSI-approved pattern
+  (Nextcloud, Plausible, Cal.com, iText) for distinguishing the two
+  populations cleanly.
+
+A commercial licence template will be published in this repository
+at `COMMERCIAL.md` once finalised. Until then, reach out directly.
