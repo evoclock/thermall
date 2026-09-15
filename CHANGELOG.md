@@ -26,7 +26,7 @@ All notable changes to thermall live here.
   documentation, and a Commercial Licence Option notice pointing to
   a forthcoming `COMMERCIAL.md`.
 - SPDX headers across 63 source / test / doc / script files updated
-  from `MIT` to `AGPL-3.0-or-later`.
+  from `MIT` to `AGPL-3.0-only`.
 - README licence section rewritten with plain-English guidance
   distinguishing open-source adoption from commercial adoption; CI,
   licence, and Python-version badges added at the top.
